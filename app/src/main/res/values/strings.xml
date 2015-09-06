@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">EarTrainer</string>
+    <string name="title_activity_login">EarTrainer</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_user_register">UserRegister</string>
+    <string name="title_activity_exercise_chords">ExerciseChords</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_marks">marks</string>
+    <string name="title_activity_exercise_notes">ExerciseNotes</string>
+    <string name="title_activity_exercise_scales">ExerciseScales</string>
+    <string name="title_activity_progress">Progress</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_users">users</string>
+    <string name="title_activity_play">Play</string>
+</resources>

@@ -1,0 +1,257 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.chathura.eartrainer.Progress"
+    android:background="@mipmap/background_progress">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:clickable="true"
+            android:onClick="onItemClicked"
+            android:id="@+id/Note">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginLeft="15dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="25dp"
+                android:text="Notes  "
+                android:id="@+id/text2"
+                android:gravity="right"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false"
+                android:layout_alignTop="@+id/textNum"
+                android:layout_toRightOf="@+id/textNum"
+                android:layout_toEndOf="@+id/textNum" />
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="20dp"
+                android:text="Level 3"
+                android:id="@+id/textLevelNotes"
+                android:gravity="right"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false"
+                android:layout_alignTop="@+id/textNum"
+                android:layout_toRightOf="@+id/textNum"
+                android:layout_toEndOf="@+id/textNum"
+
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:clickable="true"
+            android:onClick="onItemClicked"
+            android:id="@+id/Note1">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/progressBar1"
+                android:background="#11FFFFFF"
+                android:minWidth="300dp"
+                android:progress="15"
+                android:max="100"
+                android:progressDrawable="@drawable/progressbar"
+
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:text="100%"
+                android:textColor="#FFFFFF"
+                android:id="@+id/textView1"
+                android:layout_weight="0.42" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:clickable="true"
+            android:onClick="onItemClicked"
+            android:id="@+id/Chord">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginLeft="15dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="25dp"
+                android:text="Chords"
+                android:id="@+id/text3"
+                android:gravity="right"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false"
+                android:layout_alignTop="@+id/textNum"
+                android:layout_toRightOf="@+id/textNum"
+                android:layout_toEndOf="@+id/textNum" />
+
+            <TextView
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="20dp"
+                android:text="Level 1"
+                android:id="@+id/textLevelChords"
+                android:gravity="right"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false"
+                android:layout_alignTop="@+id/textNum"
+                android:layout_toRightOf="@+id/textNum"
+                android:layout_toEndOf="@+id/textNum"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:clickable="true"
+            android:onClick="onItemClicked"
+            android:id="@+id/Chord1">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/progressBar2"
+                android:background="#11FFFFFF"
+                android:minWidth="300dp"
+                android:progress="15"
+                android:max="100"
+                android:progressDrawable="@drawable/progressbar"
+
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="100%"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:id="@+id/textView2"
+                android:layout_weight="0.43" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:clickable="true"
+            android:onClick="onItemClicked"
+            android:id="@+id/Scale">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginLeft="15dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="25dp"
+                android:text="Scales "
+                android:id="@+id/text5"
+                android:gravity="right"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false"
+                android:layout_alignTop="@+id/textNum"
+                android:layout_toRightOf="@+id/textNum"
+                android:layout_toEndOf="@+id/textNum" />
+
+            <TextView
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="20dp"
+                android:text="Level 2"
+                android:id="@+id/textLevelScales"
+                android:gravity="right"
+                android:textColor="#FFFFFF"
+                android:textIsSelectable="false"
+                android:layout_alignTop="@+id/textNum"
+                android:layout_toRightOf="@+id/textNum"
+                android:layout_toEndOf="@+id/textNum"
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:clickable="true"
+            android:onClick="onItemClicked"
+            android:id="@+id/Scale1">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:id="@+id/progressBar3"
+                android:background="#11FFFFFF"
+                android:minWidth="300dp"
+                android:progress="10"
+                android:max="100"
+                android:progressDrawable="@drawable/progressbar"
+
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="100%"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:id="@+id/textView3"
+                android:layout_weight="0.44" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

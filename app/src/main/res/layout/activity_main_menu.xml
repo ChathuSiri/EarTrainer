@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chathura.theapp.Home"
+    android:background="@mipmap/background_menu"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        android:layout_marginTop="85dp"
+        android:weightSum="1"
+        android:id="@+id/linearLayout3"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="EarTrainer"
+            android:textColor="#FFFFFF"
+            android:id="@+id/textView7" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:id="@+id/PlayButton"
+            android:onClick="onButtonClicked"
+            android:textColor="#FFFFFF"
+            android:background= "@drawable/button"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Exercise"
+            android:id="@+id/ExerciseButton"
+            android:onClick="onButtonClicked"
+            android:textColor="#FFFFFF"
+            android:background= "@drawable/button"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Tutorials"
+            android:id="@+id/TutorialButton"
+            android:onClick="onButtonClicked"
+            android:textColor="#FFFFFF"
+            android:background= "@drawable/button"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Progress"
+            android:id="@+id/ProgressButton"
+            android:onClick="onButtonClicked"
+            android:textColor="#FFFFFF"
+            android:background= "@drawable/button"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="63dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:id="@+id/BackButton"
+            android:onClick="onButtonClicked"
+            android:textColor="#FFFFFF"
+            android:background= "@drawable/button"
+            android:layout_gravity="center_horizontal"
+            android:layout_above="@+id/linearLayout5"
+            android:layout_centerHorizontal="true" />
+    </LinearLayout>
+
+</RelativeLayout>
