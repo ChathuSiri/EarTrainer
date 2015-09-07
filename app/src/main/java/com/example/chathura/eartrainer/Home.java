@@ -60,17 +60,22 @@ public class Home extends AppCompatActivity {
                         startActivity(i);
                     }
                     if(recyclerView.getChildAdapterPosition(child)==1){
-                        Intent i = new Intent(Home.this,Progress.class);
-                        i.putExtra("user",username);
-                        startActivity(i);
-                    }
-                    if(recyclerView.getChildAdapterPosition(child)==2){
                         Intent i = new Intent(Home.this,ExerciseChords.class);
                         i.putExtra("user",username);
                         startActivity(i);
                     }
-                    if(recyclerView.getChildAdapterPosition(child)==3){
+                    if(recyclerView.getChildAdapterPosition(child)==2){
                         Intent i = new Intent(Home.this,ExerciseScales.class);
+                        i.putExtra("user",username);
+                        startActivity(i);
+                    }
+                    if(recyclerView.getChildAdapterPosition(child)==3){
+                        Intent i = new Intent(Home.this,Progress.class);
+                        i.putExtra("user",username);
+                        startActivity(i);
+                    }
+                    if(recyclerView.getChildAdapterPosition(child)==4){
+                        Intent i = new Intent(Home.this,Play.class);
                         i.putExtra("user",username);
                         startActivity(i);
                     }
@@ -103,10 +108,6 @@ public class Home extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -119,19 +120,12 @@ public class Home extends AppCompatActivity {
         c1.setTitle("Notes");
         c1.setDescription("Identify Notes");
         c1.setImage(R.drawable.image5);
-
         result.add(c1);
-
-        ContactInfo c2 = new ContactInfo();
-        c2.setTitle("Intervals");
-        c2.setDescription("Identify Intervals");
-        c2.setImage(R.drawable.image4);
-        result.add(c2);
 
         ContactInfo c3 = new ContactInfo();
         c3.setTitle("Chords");
         c3.setDescription("Identify Chords");
-        c3.setImage(R.drawable.image1);
+        c3.setImage(R.drawable.image4);
         result.add(c3);
 
         ContactInfo c4 = new ContactInfo();
@@ -140,7 +134,17 @@ public class Home extends AppCompatActivity {
         c4.setImage(R.drawable.image2);
         result.add(c4);
 
+        ContactInfo c5 = new ContactInfo();
+        c5.setTitle("Progress");
+        c5.setDescription("See your Progress");
+        c5.setImage(R.drawable.image7);
+        result.add(c5);
 
+        ContactInfo c2 = new ContactInfo();
+        c2.setTitle("Help");
+        c2.setDescription("Some Information");
+        c2.setImage(R.drawable.image1);
+        result.add(c2);
 
         return result;
     }

@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="Ear"
         android:theme="@style/AppTheme" >
         <activity
@@ -34,46 +34,64 @@
         </activity>
         <activity
             android:name=".UserRegister"
-            android:configChanges="orientation"
             android:label="@string/title_activity_user_register"
             android:noHistory="true"
+            android:configChanges="orientation"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ExerciseChords"
-            android:label="@string/title_activity_exercise_chords" >
+            android:label="@string/title_activity_exercise_chords"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MainMenu"
-            android:label="@string/title_activity_main_menu" >
+            android:label="@string/title_activity_main_menu"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".marks"
-            android:label="@string/title_activity_marks" >
+            android:label="@string/title_activity_marks"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ExerciseNotes"
-            android:label="@string/title_activity_exercise_notes" >
+            android:label="@string/title_activity_exercise_notes"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ExerciseScales"
-            android:label="@string/title_activity_exercise_scales" >
+            android:label="@string/title_activity_exercise_scales"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Progress"
-            android:label="@string/title_activity_progress" >
+            android:label="@string/title_activity_progress"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ProgressView"
-            android:label="Progress View" >
+            android:label="Progress View"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Play"
-            android:label="@string/title_activity_play" >
+            android:label="@string/title_activity_play"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
