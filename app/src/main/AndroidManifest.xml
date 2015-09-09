@@ -40,14 +40,8 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ExerciseChords"
+            android:name=".Exercises.ExerciseChords"
             android:label="@string/title_activity_exercise_chords"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".MainMenu"
-            android:label="@string/title_activity_main_menu"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
@@ -58,13 +52,13 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ExerciseNotes"
+            android:name=".Exercises.ExerciseNotes"
             android:label="@string/title_activity_exercise_notes"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ExerciseScales"
+            android:name=".Exercises.ExerciseScales"
             android:label="@string/title_activity_exercise_scales"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
@@ -72,12 +66,6 @@
         <activity
             android:name=".Progress"
             android:label="@string/title_activity_progress"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>

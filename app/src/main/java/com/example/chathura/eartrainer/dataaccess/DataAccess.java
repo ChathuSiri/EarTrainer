@@ -1,14 +1,13 @@
-package com.example.chathura.eartrainer;
+package com.example.chathura.eartrainer.dataaccess;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Color;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.data.BarDataSet;
+import com.example.chathura.eartrainer.logic.User;
+import com.example.chathura.eartrainer.logic.sound;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
@@ -124,7 +123,7 @@ public class DataAccess extends SQLiteOpenHelper{
         database.insert(TABLE_NAME, null, values);
         database.close();
     }
-
+    //this method returns a list of whole users
     public List<User> getUsers(){
         database = this.getReadableDatabase();
         String query = "SELECT username,password FROM "+TABLE_NAME;
@@ -147,6 +146,7 @@ public class DataAccess extends SQLiteOpenHelper{
 
     }
 
+    //int this method latest marks and levels will be taken out from database and saved in varables
     public void getUserDetails(){
         //String user = "default";
         String query1 = "SELECT * FROM notemarks";
@@ -156,7 +156,7 @@ public class DataAccess extends SQLiteOpenHelper{
 
         Cursor cursor = database.rawQuery(query1, null);
         int count = cursor.getCount();
-        if(count==0){
+        if(count==0){                                   //if table is empty add the first entry
             ContentValues values = new ContentValues();
             values.put("num", 0);
             values.put("level", 1);
@@ -167,7 +167,7 @@ public class DataAccess extends SQLiteOpenHelper{
         count = cursor.getCount();
         if(cursor.moveToFirst()){
             do {
-                if(cursor.getInt(0)==(count-1)){
+                if(cursor.getInt(0)==(count-1)){        //then take the last entry information
                     levelnote = cursor.getInt(1);
                     marknote = cursor.getInt(2);
                 }
@@ -177,7 +177,7 @@ public class DataAccess extends SQLiteOpenHelper{
 
         cursor = database.rawQuery(query2, null);
         count = cursor.getCount();
-        if(count==0){
+        if(count==0){                                   //if table is empty add the first entry
             ContentValues values = new ContentValues();
             values.put("num", 0);
             values.put("level", 1);
@@ -188,7 +188,7 @@ public class DataAccess extends SQLiteOpenHelper{
         count = cursor.getCount();
         if(cursor.moveToFirst()){
             do {
-                if(cursor.getInt(0)==(count-1)){
+                if(cursor.getInt(0)==(count-1)){        //then take the last entry information
                     levelchord = cursor.getInt(1);
                     markchord = cursor.getInt(2);
                 }
@@ -198,7 +198,7 @@ public class DataAccess extends SQLiteOpenHelper{
 
         cursor = database.rawQuery(query3, null);
         count = cursor.getCount();
-        if(count==0){
+        if(count==0){                                   //if table is empty add the first entry
             ContentValues values = new ContentValues();
             values.put("num", 0);
             values.put("level", 1);
@@ -209,7 +209,7 @@ public class DataAccess extends SQLiteOpenHelper{
         count = cursor.getCount();
         if(cursor.moveToFirst()){
             do {
-                if(cursor.getInt(0)==(count-1)){
+                if(cursor.getInt(0)==(count-1)){        //then take the last entry information
                     levelscale = cursor.getInt(1);
                     markscale = cursor.getInt(2);
                 }
@@ -220,12 +220,14 @@ public class DataAccess extends SQLiteOpenHelper{
 
     }
 
-    public void setMarks(String exercise,int marks,int level){
+    public void setMarks(String exercise,int marks,int level){//will set marks and level in given exercise
         database = this.getReadableDatabase();
         getUserDetails();
         String query1 = "SELECT * FROM notemarks";
         String query2 = "SELECT * FROM chordmarks";
         String query3 = "SELECT * FROM scalemarks";
+
+        //first counts of entries of the table will be taken
         Cursor cursor = database.rawQuery(query1, null);
         int countnotes = cursor.getCount();
         cursor = database.rawQuery(query2, null);
@@ -234,20 +236,20 @@ public class DataAccess extends SQLiteOpenHelper{
         int countscales = cursor.getCount();
 
         ContentValues data=new ContentValues();
-        if(exercise.equals("notes")){
+        if(exercise.equals("notes")){                       //if exercise name is notes this segment will be executed
             data.put("marks", marks);
             data.put("level", level);
             data.put("num", countnotes);
             database.insert("notemarks", null, data);
 
         }
-        else if(exercise.equals("chords")){
+        else if(exercise.equals("chords")){                       //if exercise name is notes this segment will be executed
             data.put("marks", marks);
             data.put("level", level);
             data.put("num", countchords);
             database.insert("chordmarks", null, data);
         }
-        else if(exercise.equals("scales")){
+        else if(exercise.equals("scales")){                       //if exercise name is notes this segment will be executed
             data.put("marks", marks);
             data.put("level", level);
             data.put("num", countscales);
@@ -256,13 +258,13 @@ public class DataAccess extends SQLiteOpenHelper{
 
     }
 
-    public ArrayList<BarEntry> getDataSet(String exercise){
+    public ArrayList<BarEntry> getDataSet(String exercise){//data set will be returned for charting given exercise
         String query1 = "SELECT * FROM notemarks";
         String query2 = "SELECT * FROM chordmarks";
         String query3 = "SELECT * FROM scalemarks";
         database= this.getWritableDatabase();
         Cursor cursor;
-        if(exercise.equals("notes")){
+        if(exercise.equals("notes")){                   //data will be quaried according to the exrecise type
             cursor  = database.rawQuery(query1, null);
         }
         else if(exercise.equals("chords")){
@@ -272,7 +274,7 @@ public class DataAccess extends SQLiteOpenHelper{
             cursor  = database.rawQuery(query3, null);
 
         ArrayList<BarEntry> valueSet1 = new ArrayList<>();
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {                     //then table entries will be added to an arraylist
             do {
                 sound chord = new sound();
                 chord.setName(cursor.getString(0));
@@ -286,6 +288,7 @@ public class DataAccess extends SQLiteOpenHelper{
 
     }
 
+    //This method inserts chords to db in initial phase
     private void insertChords(SQLiteDatabase db){
         ArrayList<sound> chords = new ArrayList<>();
 
@@ -329,12 +332,12 @@ public class DataAccess extends SQLiteOpenHelper{
 
 
     }
-
+    //this method returns a list of chords in the database
     public List<sound> getChords(String username){
         List<sound> chordList = new ArrayList<sound>();
         // Select All Query
         getUserDetails();
-        if(markchord>12 && levelchord<3)
+        if(markchord>11 && levelchord<3)
             levelchord++;
 
         String selectQuery = "SELECT * FROM chords";
@@ -353,7 +356,7 @@ public class DataAccess extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
 
-        // return contact list
+        // return chord list    list will be different according to level
         if(levelchord ==1) {
             List<sound> list = new ArrayList<>();
             list = chordList.subList(0,7);
@@ -367,9 +370,9 @@ public class DataAccess extends SQLiteOpenHelper{
 
             return chordList;}
     }
-    //use to create a whole new db
 
 
+    //This method inserts notes to db in initial phase
     private void insertNotes(SQLiteDatabase db){
         ArrayList<sound> Notes = new ArrayList<>();
         Notes.add(new sound("A normal","noteanguitar"));
@@ -378,7 +381,7 @@ public class DataAccess extends SQLiteOpenHelper{
         Notes.add(new sound("D normal", "notednguitar"));
         Notes.add(new sound("E normal", "noteenguitar"));
         Notes.add(new sound("F normal", "notefnguitar"));
-        Notes.add(new sound("G normal","notegnguitar"));
+        Notes.add(new sound("G normal", "notegnguitar"));
         Notes.add(new sound("F sharp", "notefsguitar"));
 
         Notes.add(new sound("A flat","noteafguitar"));
@@ -400,11 +403,12 @@ public class DataAccess extends SQLiteOpenHelper{
 
     }
 
+    //this method returns the list of notes in the database
     public List<sound> getNotes(String username){List<sound> NoteList = new ArrayList<sound>();
         // Select All Query
         String selectQuery = "SELECT * FROM notes";
         getUserDetails();
-        if(marknote>12 && levelnote<3)
+        if(marknote>11 && levelnote<3)
             levelnote++;
         database= this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
@@ -420,7 +424,7 @@ public class DataAccess extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
 
-        // return contact list
+        // return notes list         list will be different according to level
         if(levelnote ==1) {
             List<sound> list = new ArrayList<>();
             list = NoteList.subList(0,7);
@@ -433,6 +437,7 @@ public class DataAccess extends SQLiteOpenHelper{
         else return NoteList;
     }
 
+    //This method inserts scales to db in initial phase
     private void insertScales(SQLiteDatabase db){
         ArrayList<sound> Scales = new ArrayList<>();
 
@@ -477,12 +482,12 @@ public class DataAccess extends SQLiteOpenHelper{
         }
 
     }
-
+    //This method returns scales in the database as list
     public List<sound> getScales(String username){
         List<sound> scaleList = new ArrayList<>();
         // Select All Query
         getUserDetails();
-        if(markscale>12 && levelscale<3)
+        if(markscale>11 && levelscale<3)
             levelscale++;
         String selectQuery = "SELECT * FROM scales";
         database= this.getWritableDatabase();
@@ -499,7 +504,7 @@ public class DataAccess extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
 
-        // return contact list
+        // return scales list              list will be different according to level
         if(levelscale ==1) {
             List<sound> list = new ArrayList<>();
             list = scaleList.subList(0,7);
@@ -514,9 +519,21 @@ public class DataAccess extends SQLiteOpenHelper{
     }
 
 
+    public void resetInfo(){
+        database = this.getReadableDatabase();
+        String query4 = "DROP TABLE IF EXISTS "+"notemarks";
+        String query5 = "DROP TABLE IF EXISTS "+"chordmarks";
+        String query6 = "DROP TABLE IF EXISTS "+"scalemarks";
+        database.execSQL(query4);
+        database.execSQL(query5);
+        database.execSQL(query6);
+        database.execSQL(TABLE_NOTES_MARKS_CREATE);
+        database.execSQL(TABLE_CHORDS_MARKS_CREATE);
+        database.execSQL(TABLE_SCALES_MARKS_CREATE);
+    }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {//drops table if exist in initial stage
         String query = "DROP TABLE IF EXISTS "+TABLE_NAME;
         String query1 = "DROP TABLE IF EXISTS "+TABLE_NAME_CHORDS;
         String query2 = "DROP TABLE IF EXISTS "+TABLE_NAME_SCALES;

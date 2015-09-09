@@ -1,4 +1,4 @@
-package com.example.chathura.eartrainer;
+package com.example.chathura.eartrainer.logic;
 
 public class User {
     private int id;

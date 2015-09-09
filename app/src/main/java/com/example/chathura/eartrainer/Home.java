@@ -13,6 +13,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.chathura.eartrainer.Exercises.ExerciseChords;
+import com.example.chathura.eartrainer.Exercises.ExerciseNotes;
+import com.example.chathura.eartrainer.Exercises.ExerciseScales;
+import com.example.chathura.eartrainer.logic.CardAdapter;
+import com.example.chathura.eartrainer.logic.CardInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +40,7 @@ public class Home extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recList.setLayoutManager(llm);
 
-        ContactAdapter ca = new ContactAdapter(createList());
+        CardAdapter ca = new CardAdapter(createList());
         recList.setAdapter(ca);
 
         final GestureDetector mGestureDetector = new GestureDetector(Home.this, new GestureDetector.SimpleOnGestureListener() {
@@ -46,7 +52,7 @@ public class Home extends AppCompatActivity {
 
         });
 
-        recList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
+        recList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() { //in this segement touch events addded to cardlist items
             @Override
             public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
                 View child = recyclerView.findChildViewUnder(motionEvent.getX(),motionEvent.getY());
@@ -55,26 +61,26 @@ public class Home extends AppCompatActivity {
 
                 if(child!=null && mGestureDetector.onTouchEvent(motionEvent)){
                     if(recyclerView.getChildAdapterPosition(child)==0){
-                        Intent i = new Intent(Home.this,ExerciseNotes.class);
+                        Intent i = new Intent(Home.this,ExerciseNotes.class);   //Card that leads to notes exercises when pressed
                         i.putExtra("user",username);
                         startActivity(i);
                     }
                     if(recyclerView.getChildAdapterPosition(child)==1){
-                        Intent i = new Intent(Home.this,ExerciseChords.class);
+                        Intent i = new Intent(Home.this,ExerciseChords.class);  //Card that leads to chords exercises when pressed
                         i.putExtra("user",username);
                         startActivity(i);
                     }
                     if(recyclerView.getChildAdapterPosition(child)==2){
-                        Intent i = new Intent(Home.this,ExerciseScales.class);
+                        Intent i = new Intent(Home.this,ExerciseScales.class);  //Card that leads to chords exercises when pressed
                         i.putExtra("user",username);
                         startActivity(i);
                     }
                     if(recyclerView.getChildAdapterPosition(child)==3){
-                        Intent i = new Intent(Home.this,Progress.class);
+                        Intent i = new Intent(Home.this,Progress.class);        //Card that leads to progress view when pressed
                         i.putExtra("user",username);
                         startActivity(i);
                     }
-                    if(recyclerView.getChildAdapterPosition(child)==4){
+                    if(recyclerView.getChildAdapterPosition(child)==4){         ////Card that leads to help info when pressed
                         Intent i = new Intent(Home.this,Play.class);
                         i.putExtra("user",username);
                         startActivity(i);
@@ -112,37 +118,37 @@ public class Home extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private List<ContactInfo> createList() {
+    private List<CardInfo> createList() { //in this method cards are created for the recycler view
 
-        List<ContactInfo> result = new ArrayList<ContactInfo>();
+        List<CardInfo> result = new ArrayList<CardInfo>();
 
-        ContactInfo c1 = new ContactInfo();
+        CardInfo c1 = new CardInfo();     //Card that leads to notes exercises when pressed
         c1.setTitle("Notes");
-        c1.setDescription("Identify Notes");
+        c1.setDescription("");
         c1.setImage(R.drawable.image5);
         result.add(c1);
 
-        ContactInfo c3 = new ContactInfo();
+        CardInfo c3 = new CardInfo();       //Card that leads to chords exercises when pressed
         c3.setTitle("Chords");
-        c3.setDescription("Identify Chords");
+        c3.setDescription("");
         c3.setImage(R.drawable.image4);
         result.add(c3);
 
-        ContactInfo c4 = new ContactInfo();
+        CardInfo c4 = new CardInfo();       //Card that leads to scales exercises when pressed
         c4.setTitle("Scale");
-        c4.setDescription("Identify Scales");
+        c4.setDescription("");
         c4.setImage(R.drawable.image2);
         result.add(c4);
 
-        ContactInfo c5 = new ContactInfo();
+        CardInfo c5 = new CardInfo();       //Card that leads to progressvies when pressed
         c5.setTitle("Progress");
-        c5.setDescription("See your Progress");
+        c5.setDescription("");
         c5.setImage(R.drawable.image7);
         result.add(c5);
 
-        ContactInfo c2 = new ContactInfo();
+        CardInfo c2 = new CardInfo();       ////Card that leads to help info when pressed
         c2.setTitle("Help");
-        c2.setDescription("Some Information");
+        c2.setDescription("");
         c2.setImage(R.drawable.image1);
         result.add(c2);
 

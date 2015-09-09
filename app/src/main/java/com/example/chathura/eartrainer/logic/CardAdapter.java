@@ -1,10 +1,8 @@
-package com.example.chathura.eartrainer;
+package com.example.chathura.eartrainer.logic;
 
 /**
  * Created by Chathura on 8/22/2015.
  */
-import android.content.ClipData;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chathura.eartrainer.R;
+
 import java.util.List;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ContactViewHolder> {
 
-    private List<ContactInfo> contactList;
+    private List<CardInfo> contactList;
 
-    public ContactAdapter(List<ContactInfo> contactList) {
+    public CardAdapter(List<CardInfo> contactList) {
         this.contactList = contactList;
     }
 
@@ -31,7 +31,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     @Override
     public void onBindViewHolder(ContactViewHolder contactViewHolder, int i) {
-        ContactInfo ci = contactList.get(i);
+        CardInfo ci = contactList.get(i);
 
         contactViewHolder.title.setText(ci.getTitle());
         contactViewHolder.image.setImageResource(ci.getImage());

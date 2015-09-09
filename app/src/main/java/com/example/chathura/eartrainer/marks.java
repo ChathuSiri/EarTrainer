@@ -1,6 +1,5 @@
 package com.example.chathura.eartrainer;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.chathura.eartrainer.dataaccess.DataAccess;
 
 public class marks extends AppCompatActivity {
     ProgressBar bar ;
@@ -21,7 +22,7 @@ public class marks extends AppCompatActivity {
     TextView t;
     DataAccess helper = new DataAccess(this);
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {    //this activity shows marks for the exercise
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marks);
         bar = (ProgressBar)findViewById(R.id.progressBar);
@@ -32,15 +33,9 @@ public class marks extends AppCompatActivity {
         t=(TextView)findViewById(R.id.textNum);
         t.setText(Integer.toString(marks));
         handler = new Handler();
-        bar.setProgress(marks);
+        bar.setProgress(marks);                              //with a progress bar
         t=(TextView)findViewById(R.id.textMessage);
-        t.setText(setMessage(marks));
-
-        //handler.postDelayed(runner, 1000);
-        /*runner = new runner();
-        for(int num = 0 ; 1<marks; num++) {
-            handler.postDelayed(runner, 10);
-        }*/
+        t.setText(setMessage(marks));                        // and a motivational message
         helper.setMarks(exercise,marks,level);
 
     }
@@ -53,7 +48,7 @@ public class marks extends AppCompatActivity {
         return;
     }
 
-    private String setMessage(int marks){
+    private String setMessage(int marks){       //A message will be changed according to users marks
         String message = "Just Wow!!";
         if(marks<3){
             return "Newbie..";

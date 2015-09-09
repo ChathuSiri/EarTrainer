@@ -31,5 +31,5 @@
     <string name="note_text">In music, the term note has two primary meanings: A sign used in musical notation to represent the relative duration and pitch of a sound (♪, ♫); A pitched sound itself.</string>
     <string name="chord_text">The most frequently encountered chords are triads, so called because they consist of three distinct notes: further notes may be added to give seventh chords, extended chords, or added tone chords. The most common chords are the major and minor triads and then the augmented and diminished triads.</string>
     <string name="scale_text">In music theory, a scale is any set of musical notes ordered by fundamental frequency or pitch. A scale ordered by increasing pitch is an ascending scale, and a scale ordered by decreasing pitch is a descending scale. Some scales contain different pitches when ascending than when descending.</string>
-
+    <string name="about_text">This application gives you a series of exercise for identifying notes,scales and chords. In exercises there will be an audio segment played. What you have to do is select the correct choice from the given below. If really do not know what is the correct one, Do not be afraid to give a try.</string>
 </resources>

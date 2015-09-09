@@ -1,4 +1,4 @@
-package com.example.chathura.eartrainer;
+package com.example.chathura.eartrainer.Exercises;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -13,12 +13,17 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chathura.eartrainer.Home;
+import com.example.chathura.eartrainer.R;
+import com.example.chathura.eartrainer.dataaccess.DataAccess;
+import com.example.chathura.eartrainer.logic.sound;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ExerciseNotes extends AppCompatActivity {
+public class ExerciseScales extends AppCompatActivity {
     DataAccess helper = new DataAccess(this);
     String username;
     String[] chords=new String[5];
@@ -28,6 +33,7 @@ public class ExerciseNotes extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     int answer;
     boolean answered;
+    String answerName = "";
     int marks;
     int count;
     Random random;
@@ -43,7 +49,7 @@ public class ExerciseNotes extends AppCompatActivity {
         Intent i = getIntent();
         username = i.getExtras().getString("user");
 
-        chordList = helper.getNotes(username);
+        chordList = helper.getScales(username);
 
         radioGroup = (RadioGroup)findViewById(R.id.group);
         random = new Random();
@@ -53,28 +59,19 @@ public class ExerciseNotes extends AppCompatActivity {
         marks = 0;
         count = 1;
 
-        /*new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                mediaPlayer.start();
-            }
-        }, 1000);
-        */
         t=(TextView)findViewById(R.id.textNum);
         t.setText(Integer.toString(count));
 
-
     }
 
-    private void randomize(){
+    private void randomize(){       //this methods randomly select choices and answers for an exersice
         radioGroup.clearCheck();
         answers.clear();
         int MAX =chordList.size();
         int[] num =new int[5];
         num[0] = (int)(Math.random()*MAX);
 
-        while (num[1] == num[0])
+        while (num[1] == num[0])        // this part used to not to select the same choice twice in an exercise
         {
             num[1] = (int)(Math.random()*MAX);
         }
@@ -98,17 +95,21 @@ public class ExerciseNotes extends AppCompatActivity {
             ((RadioButton) radioGroup.getChildAt(i)).setText(answers.get(i).getName());
         }
 
-        answer = random.nextInt(5);
+        answer = random.nextInt(5);     //this method prevent from having the same choice as the answer in adjacent exercise
+        while (count!=0 && answerName.equals(answers.get(answer).getName())){
+            answer = random.nextInt(5);
+        }
+        answerName=answers.get(answer).getName();
         int resID = getResources().getIdentifier(answers.get(answer).getFile(), "raw", getPackageName());
         mediaPlayer = MediaPlayer.create(this, resID);
     }
 
-    public void onRadioButtonClicked(View view) {
+    public void onRadioButtonClicked(View view) {       //when a choice is made
 
         String choice = (String) ((RadioButton) view).getText();
 
-        if(choice==answers.get(answer).getName()){
-            Toast.makeText(ExerciseNotes.this,
+        if(choice==answers.get(answer).getName()){      //if answer is correct
+            Toast.makeText(ExerciseScales.this,
                     "Your answer is correct!",
                     Toast.LENGTH_SHORT).show();
             if(!answered)
@@ -117,7 +118,7 @@ public class ExerciseNotes extends AppCompatActivity {
             t.setText("score: "+Integer.toString(marks));
 
         }else {
-            Toast.makeText(ExerciseNotes.this,
+            Toast.makeText(ExerciseScales.this,         //if answer is wrong
                     "Oops wrong answer!",
                     Toast.LENGTH_SHORT).show();
         }
@@ -130,7 +131,7 @@ public class ExerciseNotes extends AppCompatActivity {
         refresh();
     }
 
-    public void refresh(){
+    public void refresh(){                      //this method crates a new exercise each time it is called
         if(mediaPlayer.isPlaying())
             mediaPlayer.stop();
         if(answered) {
@@ -140,7 +141,7 @@ public class ExerciseNotes extends AppCompatActivity {
             count ++;
             if(count<16) {
                 randomize();
-                Toast.makeText(ExerciseNotes.this,
+                Toast.makeText(ExerciseScales.this,
                         "Next Question",
                         Toast.LENGTH_SHORT).show();
                 t=(TextView)findViewById(R.id.textNum);
@@ -154,11 +155,11 @@ public class ExerciseNotes extends AppCompatActivity {
                 }, 500);
 
             }
-            else {
-                Intent i = new Intent(ExerciseNotes.this, marks.class);
+            else {                                      //if 15 exercises are done go to marks
+                Intent i = new Intent(ExerciseScales.this, com.example.chathura.eartrainer.marks.class);
                 i.putExtra("marks", marks);
-                i.putExtra("level",helper.levelnote);
-                i.putExtra("exercise","notes");
+                i.putExtra("level",helper.levelscale);
+                i.putExtra("exercise","scales");
                 i.putExtra("user",username);
                 startActivity(i);
                 this.finish();
@@ -166,7 +167,7 @@ public class ExerciseNotes extends AppCompatActivity {
 
         }
         else
-            Toast.makeText(ExerciseNotes.this,
+            Toast.makeText(ExerciseScales.this,
                     "Please answer the question.",
                     Toast.LENGTH_SHORT).show();
 
@@ -186,13 +187,12 @@ public class ExerciseNotes extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
 
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void onPlayButtonClicked(View view) {
+    public void onPlayButtonClicked(View view) {  //play the audio segment
         try {
             mediaPlayer.reset();
             int resID = getResources().getIdentifier(answers.get(answer).getFile(), "raw", getPackageName());
@@ -213,7 +213,7 @@ public class ExerciseNotes extends AppCompatActivity {
 
     }
 
-    public void onPauseButtonClicked(View view) {
+    public void onPauseButtonClicked(View view) { //pause the audio if playing
         if(mediaPlayer.isPlaying()){
             mediaPlayer.pause();
 
@@ -224,7 +224,7 @@ public class ExerciseNotes extends AppCompatActivity {
     public void onBackPressed() {
         if(mediaPlayer.isPlaying())
             mediaPlayer.stop();
-        Intent i = new Intent(ExerciseNotes.this,Home.class);
+        Intent i = new Intent(ExerciseScales.this,Home.class);
         startActivity(i);
         this.finish();
         return;
@@ -233,7 +233,7 @@ public class ExerciseNotes extends AppCompatActivity {
     public void onBackButtonClicked(View view) {
         if(mediaPlayer.isPlaying())
             mediaPlayer.stop();
-        Intent i = new Intent(ExerciseNotes.this,Home.class);
+        Intent i = new Intent(ExerciseScales.this,Home.class);
         startActivity(i);
         this.finish();
         return;

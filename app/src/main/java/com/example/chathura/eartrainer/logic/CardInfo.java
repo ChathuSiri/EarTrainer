@@ -1,9 +1,9 @@
-package com.example.chathura.eartrainer;
+package com.example.chathura.eartrainer.logic;
 
 /**
  * Created by Chathura on 8/22/2015.
  */
-public class ContactInfo {
+public class CardInfo {
     protected String title;
     protected String description;
     protected int image;

@@ -1,5 +1,7 @@
 package com.example.chathura.eartrainer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.chathura.eartrainer.dataaccess.DataAccess;
 
 public class Progress extends AppCompatActivity {
     DataAccess helper = new DataAccess(this);
@@ -20,28 +25,28 @@ public class Progress extends AppCompatActivity {
         setContentView(R.layout.activity_progress);
         helper.getUserDetails();
 
-        t=(TextView)findViewById(R.id.textLevelNotes);
+        t=(TextView)findViewById(R.id.textLevelNotes);              //current progress of Note exercises
         t.setText("level: " + Integer.toString(helper.levelnote));
         t=(TextView)findViewById(R.id.textView1);
         progress = helper.marknote*100/15;
         t.setText( Integer.toString((int)progress)+"%");
-        p=(ProgressBar)findViewById(R.id.progressBar1);
+        p=(ProgressBar)findViewById(R.id.progressBar1);             //progressbar
         p.setProgress((int)progress);
 
-        t=(TextView)findViewById(R.id.textLevelChords);
+        t=(TextView)findViewById(R.id.textLevelChords);              //current progress of Note exercises
         t.setText("level: " + Integer.toString(helper.levelchord));
         t=(TextView)findViewById(R.id.textView2);
         progress = helper.markchord*100/15 ;
         t.setText( Integer.toString((int)progress)+"%");
-        p=(ProgressBar)findViewById(R.id.progressBar2);
+        p=(ProgressBar)findViewById(R.id.progressBar2);             //progressbar
         p.setProgress((int)progress);
 
-        t=(TextView)findViewById(R.id.textLevelScales);
+        t=(TextView)findViewById(R.id.textLevelScales);              //current progress of Note exercises
         t.setText("level: " + Integer.toString(helper.levelscale));
         t=(TextView)findViewById(R.id.textView3);
         progress = helper.markscale*100/15 ;
         t.setText( Integer.toString((int)progress)+"%");
-        p=(ProgressBar)findViewById(R.id.progressBar3);
+        p=(ProgressBar)findViewById(R.id.progressBar3);             //progressbar
         p.setProgress((int)progress);
 
     }
@@ -74,24 +79,38 @@ public class Progress extends AppCompatActivity {
 
     }
 
-    public void onItemClicked(View view) {
+    public void onResetClicked(View view) {     //reset button clicked confirmation will be popped up before reset all info
+        new AlertDialog.Builder(this)
+                .setTitle("Reset data")
+                .setMessage("Do you really want to reset your data?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Toast.makeText(Progress.this, "Data cleared", Toast.LENGTH_SHORT).show();
+                        helper.resetInfo();
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+    }
+
+    public void onItemClicked(View view) {                      //leads to progress chart for the selected exercise
         if(view.getId()==R.id.Note||view.getId()==R.id.Note1){
 
-            Intent i = new Intent(Progress.this,ProgressView.class);
+            Intent i = new Intent(Progress.this,ProgressView.class);    //progress chart for notes
             i.putExtra("exercise","notes");
             startActivity(i);
         }
 
         if(view.getId()==R.id.Chord||view.getId()==R.id.Chord1){
 
-            Intent i = new Intent(Progress.this,ProgressView.class);
+            Intent i = new Intent(Progress.this,ProgressView.class);    //progress chart for notes
             i.putExtra("exercise","chords");
             startActivity(i);
         }
 
         if(view.getId()==R.id.Scale||view.getId()==R.id.Scale1){
 
-            Intent i = new Intent(Progress.this,ProgressView.class);
+            Intent i = new Intent(Progress.this,ProgressView.class);    //progress chart for notes
             i.putExtra("exercise","scales");
             startActivity(i);
         }

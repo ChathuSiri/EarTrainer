@@ -1,4 +1,4 @@
-package com.example.chathura.eartrainer;
+package com.example.chathura.eartrainer.logic;
 
 /**
  * Created by Chathura on 8/29/2015.

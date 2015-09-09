@@ -8,6 +8,9 @@ package com.example.chathura.eartrainer;
         import android.widget.EditText;
         import android.widget.Toast;
 
+        import com.example.chathura.eartrainer.dataaccess.DataAccess;
+        import com.example.chathura.eartrainer.logic.User;
+
 
 public class UserRegister extends ActionBarActivity {
 
